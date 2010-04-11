@@ -4,12 +4,14 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :time_slot %><br />
-    <%= f.text_field :time_slot %>
+    <%= f.label :time_slot_id %><br />
+    <%= collection_select(:lesson, :time_slot_id, TimeSlot.find(:all), :id,
+:time, {:prompt => true}) %>
   </p>
   <p>
-    <%= f.label :student %><br />
-    <%= f.text_field :student %>
+    <%= f.label :student_id %><br />
+    <%= collection_select(:lesson, :student_id, Student.find(:all), :id,
+:name, {:prompt => true})  %>
   </p>
   <p>
     <%= f.label :comment %><br />
