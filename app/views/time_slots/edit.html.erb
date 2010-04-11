@@ -1,0 +1,20 @@
+<h1>Editing time_slot</h1>
+
+<% form_for(@time_slot) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :time %><br />
+    <%= f.datetime_select :time %>
+  </p>
+  <p>
+    <%= f.label :max_students %><br />
+    <%= f.text_field :max_students %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @time_slot %> |
+<%= link_to 'Back', time_slots_path %>
