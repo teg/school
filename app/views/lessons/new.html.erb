@@ -5,12 +5,12 @@
 
   <p>
     <%= f.label :time_slot_id %><br />
-    <%= collection_select(:lesson, :time_slot_id, TimeSlot.find(:all), :id, 
+    <%= f.collection_select(:time_slot_id, TimeSlot.find(:all), :id,
 :time, {:prompt => true}) %>
   </p>
   <p>
     <%= f.label :student_id %><br />
-    <%= collection_select(:lesson, :student_id, Student.find(:all), :id, 
+    <%= f.collection_select(:student_id, Student.find(:all), :id,
 :name, {:prompt => true})  %>
   </p>
   <p>
