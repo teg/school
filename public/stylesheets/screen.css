@@ -1055,9 +1055,6 @@ hr.space {
   background: #fff;
   color: #fff; }
 
-@import url(constants.css);
-@import url(internal/constants.css);
-@import url(mixins.css);
 /* line 1, ../../app/stylesheets/main.sass */
 body {
   background-color: white;
