@@ -5,6 +5,8 @@ class CreateStudents < ActiveRecord::Migration
       t.string :email
       t.string :skype
       t.text :comment
+      t.string :persistence_token
+      t.string :crypted_password
 
       t.timestamps
     end

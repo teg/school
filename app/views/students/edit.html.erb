@@ -1,4 +1,4 @@
-<h1>Editing student</h1>
+<h1>My Account Settings</h1>
 
 <% form_for(@student) do |f| %>
   <%= f.error_messages %>
@@ -16,13 +16,9 @@
     <%= f.text_field :skype %>
   </p>
   <p>
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </p>
-  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
 <%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<%= link_to 'Back', :controller => :welcome %>

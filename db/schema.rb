@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20100411232752) do
     t.string   "email"
     t.string   "skype"
     t.text     "comment"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
