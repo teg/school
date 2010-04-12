@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       flash[:notice] = 'Student was successfully created.'
-      redirect_to(@student)
+      redirect_to :controller => :welcome
     else
       render :action => :new
     end
@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
 
     if @student.update_attributes(params[:student])
       flash[:notice] = 'Student was successfully updated.'
-      redirect_to(@student)
+      redirect_to :controller => :welcome
     else
       render :action => :edit
     end
