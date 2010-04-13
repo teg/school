@@ -1,0 +1,11 @@
+.lessons
+  .week
+    - Date::DAYNAMES.rotate.each do |day|
+      .day
+        %span.name= day
+        %ol
+          - (20..52).each do |time|
+            %li
+              = (time / 2 ) % 24
+              \:
+              = time.even?? '00' : '30'
