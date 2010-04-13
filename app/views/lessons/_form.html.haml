@@ -1,0 +1,10 @@
+- form_for(lesson) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :time_slot_id
+    %br
+    = f.collection_select(:time_slot_id, TimeSlot.find(:all), :id, :time, {:prompt => true})
+
+  %p
+    = f.submit button_label

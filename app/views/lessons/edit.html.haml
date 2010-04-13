@@ -1,0 +1,6 @@
+%h2 Edit Lesson
+
+= render :partial => "form", :locals => { :button_label => 'Save Changes', :lesson => @lesson }
+
+= link_to 'Show', @lesson
+= link_to 'Back', lessons_path

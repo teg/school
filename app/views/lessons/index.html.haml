@@ -1,0 +1,19 @@
+%h2 Your Lessons
+
+%table
+  %tr
+    %th Time slot
+  - @lessons.each do |lesson|
+    %tr
+      %td
+        = lesson.time_slot.time
+      %td
+        = link_to 'Show', lesson
+      %td
+        = link_to 'Edit', edit_lesson_path(lesson)
+      %td
+        = link_to 'Destroy', lesson, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New lesson', new_lesson_path

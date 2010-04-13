@@ -1,0 +1,5 @@
+%h2 New Lesson
+
+= render :partial => "form", :locals => { :button_label => 'Book Lesson', :lesson => @lesson }
+
+= link_to 'Back', lessons_path
