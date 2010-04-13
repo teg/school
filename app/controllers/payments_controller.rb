@@ -1,5 +1,9 @@
+#TODO = do not hardcode the payment to USD 50
+
 class PaymentsController < ApplicationController
   include ActiveMerchant::Billing
+
+  before_filter :require_student, :only => [:checkout, :confirm, :complete, :index]
 
   def index
   end
@@ -38,6 +42,13 @@ class PaymentsController < ApplicationController
       @message = purchase.message
       render :action => 'error'
       return
+    else
+      @payment = Payment.new(:student => current_student, :amount => 5000)
+      if !@payment.save
+        @message = 'Your payment was taken, but not registered in our system. Please contact the administrator.'
+        render :action => 'error'
+        return
+      end
     end
   end
 
