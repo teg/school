@@ -21,7 +21,7 @@
       %li= link_to "Register", new_student_path
       %li= link_to "Log In", new_student_session_path
     - else
-      %li= link_to "My Account", current_student
+      %li= link_to "My Account", edit_student_path(current_student)
       %li= link_to "Logout", current_student_session, :method => :delete, :confirm => "Are you sure you want to logout?"
 
   .heading
