@@ -1,85 +1,53 @@
 class PaymentsController < ApplicationController
-  # GET /payments
-  # GET /payments.xml
+  include ActiveMerchant::Billing
+
   def index
-    @payments = Payment.all
+  end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @payments }
+  def checkout
+    setup_response = gateway.setup_purchase(5000,
+      :ip                => request.remote_ip,
+      :return_url        => url_for(:action => 'confirm', :only_path => false),
+      :cancel_return_url => url_for(:action => 'index', :only_path => false)
+      )
+    redirect_to gateway.redirect_url_for(setup_response.token)
+  end
+
+  def confirm
+    redirect_to :action => 'index' unless params[:token]
+
+    details_response = gateway.details_for(params[:token])
+
+    if !details_response.success?
+      @message = details_response.message
+      render :action => 'error'
+      return
+    end
+
+    @address = details_response.address
+  end
+
+  def complete
+    purchase = gateway.purchase(5000,
+      :ip       => request.remote_ip,
+      :payer_id => params[:payer_id],
+      :token    => params[:token]
+    )
+
+    if !purchase.success?
+      @message = purchase.message
+      render :action => 'error'
+      return
     end
   end
 
-  # GET /payments/1
-  # GET /payments/1.xml
-  def show
-    @payment = Payment.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @payment }
-    end
+  private
+  def gateway
+    @gateway ||= PaypalExpressGateway.new(
+      :login => 'teg_1271195533_biz_api1.jklm.no',
+      :password => '1271195539',
+      :signature => 'As-6gOp8Z1BXrTza1u-qi7sLmrxkAWGjztbGEEBbiZwHUchBDeS708-J'
+      )
   end
 
-  # GET /payments/new
-  # GET /payments/new.xml
-  def new
-    @payment = Payment.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @payment }
-    end
-  end
-
-  # GET /payments/1/edit
-  def edit
-    @payment = Payment.find(params[:id])
-  end
-
-  # POST /payments
-  # POST /payments.xml
-  def create
-    @payment = Payment.new(params[:payment])
-
-    respond_to do |format|
-      if @payment.save
-        flash[:notice] = 'Payment was successfully created.'
-        format.html { redirect_to(@payment) }
-        format.xml  { render :xml => @payment, :status => :created, :location => @payment }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @payment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /payments/1
-  # PUT /payments/1.xml
-  def update
-    @payment = Payment.find(params[:id])
-
-    respond_to do |format|
-      if @payment.update_attributes(params[:payment])
-        flash[:notice] = 'Payment was successfully updated.'
-        format.html { redirect_to(@payment) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @payment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /payments/1
-  # DELETE /payments/1.xml
-  def destroy
-    @payment = Payment.find(params[:id])
-    @payment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(payments_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
