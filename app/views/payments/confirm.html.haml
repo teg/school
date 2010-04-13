@@ -1,0 +1,22 @@
+%h2 Please Confirm Your Payment
+
+%table
+  %tr
+    %td Name
+    %td
+      = @address['name']
+  %tr
+    %td Address 1
+    %td
+      = @address['address1']
+  %tr
+    %td Address 2
+    %td
+      = @address['address2']
+  %tr
+    %td City
+    %td
+      = @address['city']
+
+- form_tag :action => 'complete', :token => params[:token], :payer_id => params[:PayerID] do
+  = submit_tag 'Complete Payment'
