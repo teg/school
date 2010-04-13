@@ -14,7 +14,7 @@ Prospective students:
   see prices, sample material, videos etc etc
 
 TODO
-1) Present the correct features to the user based on his/her role (signed in as teacher,student or not signed in at all)
-2) Integrate with payment solution (paypal)
+1) Make a sensible UI
+2) Test, test and test the payments some more!
 3) Allow multiple teachers (low priority)
 
