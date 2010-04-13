@@ -1,26 +1,5 @@
 %h2 My Account Settings
 
-- form_for(@student) do |f|
-
-  = f.error_messages
-
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-
-  %p
-    = f.label :email
-    %br
-    = f.text_field :email
-
-  %p
-    = f.label :skype
-    %br
-    = f.text_field :skype
-
-  %p
-    = f.submit 'Update'
+= render :partial => "form", :locals => { :button_label => 'Save Changes', :student => @student }
 
 = link_to 'Back', :controller => :welcome
-
