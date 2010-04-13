@@ -6,6 +6,7 @@ Teachers:
   open/close timeslots
   comment on students
   comment on lessons
+  set/change standard timeslots
 Students:
   sign up for/cancel lessons
   pay
@@ -13,9 +14,7 @@ Prospective students:
   see prices, sample material, videos etc etc
 
 TODO
-1) Enable signup/login
-2) Present the correct features to the user based on his/her role (signed in as teacher,student or not signed in at all)
-     preferably the three usecases should be reached by going to teachers.school.com, students.school.com, www.school.com, respectively
-3) Integrate with payment solution (paypal)
-4) Allow multiple teachers (low priority)
+1) Present the correct features to the user based on his/her role (signed in as teacher,student or not signed in at all)
+2) Integrate with payment solution (paypal)
+3) Allow multiple teachers (low priority)
 
