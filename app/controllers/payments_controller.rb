@@ -56,8 +56,8 @@ class PaymentsController < ApplicationController
   def gateway
     @gateway ||= PaypalExpressGateway.new(
       :login => 'teg_1271195533_biz_api1.jklm.no',
-      :password => '1271195539',
-      :signature => 'As-6gOp8Z1BXrTza1u-qi7sLmrxkAWGjztbGEEBbiZwHUchBDeS708-J'
+      :password => 'Z4D4JCEWENR2MBBP',
+      :signature => 'ADVR7qVHYtXfXagcl.ufGqYYGtQCAZnT5f-0BaKlIQoB9x-z5fMuhj1d'
       )
   end
 
