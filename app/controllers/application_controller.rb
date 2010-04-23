@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   helper_method :current_student_session, :current_student, :current_teacher_session, :current_teacher
 
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password, :password_confirmation
-
   private
     def current_student_session
       return @current_student_session if defined?(@current_student_session)
@@ -37,7 +34,7 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
-    
+
     def current_teacher_session
       return @current_teacher_session if defined?(@current_teacher_session)
       @current_teacher_session = TeacherSession.find
@@ -69,7 +66,7 @@ class ApplicationController < ActionController::Base
     def store_location
       session[:return_to] = request.request_uri
     end
-    
+
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil

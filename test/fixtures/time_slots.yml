@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  time: 2010-04-12 01:26:40
-  max_students: 1
-
-two:
-  time: 2010-04-12 01:26:40
-  max_students: 1
