@@ -1,4 +1,9 @@
-%ul
-  %li= link_to "Time Slots", time_slots_path
-  %li= link_to "Lessons", lessons_path
+.upcoming
+  %h2 Upcoming time slots (#{@slots.size})
 
+  - @slots.group_by { |slot| slot.begins_at.day } .each do |_, slots|
+    %h3= slots.first.begins_at.to_date.to_s(:short)
+
+    %ol
+      - slots.each do |slot|
+        %li= slot.begins_at.strftime('%H:%M')

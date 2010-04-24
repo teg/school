@@ -1,30 +1,32 @@
 class TimeSlot < ActiveRecord::Base
   has_many :lessons
 
-  scope :week, lambda {
-    where :begins_at => week_range
+  scope :upcoming, lambda {
+    where :begins_at => upcoming_range
   }
 
+  default_scope order('begins_at')
+
   class << self
-    def week_range
-      now = Time.zone.now
-      now.beginning_of_week..now.end_of_week
+    def upcoming_range
+      today = Time.zone.now.beginning_of_day
+      today..(today + 2.weeks).end_of_day
     end
 
     def each_day
-      day = week_range.first
-      (0..6).each { |i| yield(day + i.days) }
+      day = upcoming_range.first
+      (0...14).each { |i| yield(day + i.days) }
     end
 
     def each_slot(day)
-      (4..30).each do |offset|
+      (0...48).each do |offset|
         begins_at = day + (offset * 30).minutes
         yield(slots[begins_at] || new(:begins_at => begins_at))
       end
     end
 
     def slots
-      @slots ||= week.index_by(&:begins_at)
+      @slots ||= upcoming.index_by(&:begins_at)
     end
   end
 
