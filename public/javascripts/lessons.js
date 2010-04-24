@@ -13,6 +13,7 @@ $(document).ready(function(){
       $.ajax({
         type: 'DELETE',
         url: '/time_slots/' + id,
+        data: {nothing: true},
         success: function() {
           lesson
             .removeAttr('id')
