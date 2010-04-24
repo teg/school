@@ -2,12 +2,10 @@
   .spinner{'style' => 'display: none'}
     = image_tag 'spinner.gif'
   .week
-    - now = DateTime.current
-    - (now.beginning_of_week..now.end_of_week).each do |day|
+    - TimeSlot.each_day do |day|
       .day
         %span.name= day.strftime('%A')
         %ol
-          - (4..30).map{|a| a * 30}.each do |offset|
-            - begins_at = (day + offset.minutes)
-            %li.lesson{'data-begins_at' => begins_at}
-              %span= begins_at.strftime('%H:%M')
+          - TimeSlot.each_slot(day) do |slot|
+            %li.lesson{slot.dom_attributes}
+              %span= slot.begins_at.strftime('%H:%M')

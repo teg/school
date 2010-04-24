@@ -37,20 +37,12 @@ class TimeSlotsController < ApplicationController
     @time_slot = TimeSlot.find(params[:id])
   end
 
-  # POST /time_slots
-  # POST /time_slots.xml
   def create
-    @time_slot = TimeSlot.new(params[:time_slot])
-
-    respond_to do |format|
-      if @time_slot.save
-        flash[:notice] = 'TimeSlot was successfully created.'
-        format.html { redirect_to(@time_slot) }
-        format.xml  { render :xml => @time_slot, :status => :created, :location => @time_slot }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @time_slot.errors, :status => :unprocessable_entity }
-      end
+    time_slot = TimeSlot.new(params[:time_slot])
+    if time_slot.save
+      render :json => time_slot
+    else
+      head :status => 500
     end
   end
 
@@ -71,15 +63,9 @@ class TimeSlotsController < ApplicationController
     end
   end
 
-  # DELETE /time_slots/1
-  # DELETE /time_slots/1.xml
   def destroy
-    @time_slot = TimeSlot.find(params[:id])
-    @time_slot.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(time_slots_url) }
-      format.xml  { head :ok }
-    end
+    time_slot = TimeSlot.find(params[:id])
+    time_slot.destroy
+    head :ok
   end
 end
