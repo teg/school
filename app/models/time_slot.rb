@@ -34,6 +34,8 @@ class TimeSlot < ActiveRecord::Base
     attributes = {'data-id' => id, 'data-begins_at' => begins_at}
     attributes.delete_if { |_,value| value.nil? }
     attributes.merge!('class' => 'available') if id
+    attributes.merge!('class' => 'booked') if !(lessons.empty?)
     attributes
   end
 end
+
