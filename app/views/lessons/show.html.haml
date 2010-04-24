@@ -1,6 +1,6 @@
 %p
   %h3 Start time:
-  = @lesson.time_slot.time
+  = @lesson.time_slot.begins_at
 
 = link_to 'Edit', edit_lesson_path(@lesson)
 = link_to 'Back', lessons_path

@@ -6,7 +6,7 @@
   - @lessons.each do |lesson|
     %tr
       %td
-        = lesson.time_slot.time
+        = lesson.time_slot.begins_at
       %td
         = link_to 'Show', lesson
       %td
