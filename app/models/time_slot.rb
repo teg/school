@@ -13,7 +13,7 @@ class TimeSlot < ActiveRecord::Base
 
     def each_day
       day = week_range.first
-      (0..7).each { |i| yield(day + i.days) }
+      (0..6).each { |i| yield(day + i.days) }
     end
 
     def each_slot(day)
