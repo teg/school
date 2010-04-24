@@ -1,7 +1,12 @@
 $(document).ready(function(){
   $('.lesson').click(function(){
     lesson = $(this)
-      .addClass('waiting');
+
+    if(lesson.hasClass('waiting')) {
+      return true;
+    }
+
+    lesson.addClass('waiting');
 
     if (lesson.hasClass('available')) {
       id = lesson.attr('data-id');
