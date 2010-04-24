@@ -65,7 +65,11 @@ class TimeSlotsController < ApplicationController
 
   def destroy
     time_slot = TimeSlot.find(params[:id])
-    time_slot.destroy
-    head :ok
+    if time_slot.lessons.empty?
+      time_slot.destroy
+      head :ok
+    else
+      head :status => 500
+    end
   end
 end
