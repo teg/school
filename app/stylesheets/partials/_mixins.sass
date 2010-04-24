@@ -1,0 +1,22 @@
+!corner_radius = 0.3em
+=rounded_tl(!radius = !corner_radius)
+  :-moz-border-radius-topleft = !radius
+  :-webkit-border-top-left-radius = !radius
+  :border-top-left-radius = !radius
+=rounded_tr(!radius = !corner_radius)
+  :-moz-border-radius-topright = !radius
+  :-webkit-border-top-right-radius = !radius
+  :border-top-right-radius = !radius
+=rounded_bl(!radius = !corner_radius)
+  :-moz-border-radius-bottomleft = !radius
+  :-webkit-border-bottom-left-radius = !radius
+  :border-bottom-left-radius = !radius
+=rounded_br(!radius = !corner_radius)
+  :-moz-border-radius-bottomright = !radius
+  :-webkit-border-bottom-right-radius = !radius
+  :border-bottom-right-radius = !radius
+=rounded_corners(!tl = !corner_radius, !tr = !corner_radius, !br = !corner_radius, !bl = !corner_radius)
+  +rounded_tl(!tl)
+  +rounded_tr(!tr)
+  +rounded_br(!br)
+  +rounded_bl(!bl)

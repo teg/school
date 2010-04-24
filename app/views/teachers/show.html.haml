@@ -1,11 +1,13 @@
 .lessons
+  .spinner{'style' => 'display: none'}
+    = image_tag 'spinner.gif'
   .week
-    - Date::DAYNAMES.rotate.each do |day|
+    - now = DateTime.current
+    - (now.beginning_of_week..now.end_of_week).each do |day|
       .day
-        %span.name= day
+        %span.name= day.strftime('%A')
         %ol
-          - (20..52).each do |time|
-            %li
-              = (time / 2 ) % 24
-              \:
-              = time.even?? '00' : '30'
+          - (4..30).map{|a| a * 30}.each do |offset|
+            - begins_at = (day + offset.minutes)
+            %li.lesson{'data-begins_at' => begins_at}
+              %span= begins_at.strftime('%H:%M')

@@ -1,5 +1,26 @@
 .lessons
   .day
     float: left
-  li
-    list-style: none
+    width: 70px
+    text-align: center
+    .name
+      font-weight: bold
+  ol
+    margin: 0 5px
+    padding: 0
+    li
+      width: 40px
+      list-style: none
+      border: 1px solid #bbb
+      padding: 0px 10px
+      margin: 2px 0
+      +rounded_corners(5px, 5px, 5px, 5px)
+      line-height: 12px
+      font-size: 10px
+      cursor: pointer
+      &.available
+        background: #cccccc
+      &.waiting
+        background: url("/images/spinner.gif") no-repeat center center
+        span
+          opacity: 0
