@@ -2,7 +2,7 @@ $(document).ready(function(){
   $('.lesson').click(function(){
     lesson = $(this)
 
-    if(lesson.hasClass('waiting')) {
+    if(lesson.hasClass('waiting') or lesson.hasClass('booked')) {
       return true;
     }
 
