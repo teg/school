@@ -21,7 +21,9 @@ class TimeSlot < ActiveRecord::Base
     def each_slot(day)
       (0...48).each do |offset|
         begins_at = day + (offset * 30).minutes
-        yield(slots[begins_at] || new(:begins_at => begins_at))
+        if begins_at + 30.minutes > Time.zone.now
+          yield(slots[begins_at] || new(:begins_at => begins_at))
+        end
       end
     end
 
