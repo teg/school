@@ -5,6 +5,10 @@ class TimeSlot < ActiveRecord::Base
     where :begins_at => upcoming_range
   }
 
+  scope :free,
+    joins('LEFT JOIN (SELECT lessons.time_slot_id, count(id) as count FROM lessons GROUP BY time_slot_id) AS ag ON ag.time_slot_id = time_slots.id')
+    .where('max_students IS NULL OR ag.count IS NULL OR ag.count < max_students')
+
   default_scope order('begins_at')
 
   class << self
