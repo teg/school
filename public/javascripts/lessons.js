@@ -2,7 +2,12 @@ $(document).ready(function(){
   $('.lesson').click(function(){
     lesson = $(this)
 
-    if(lesson.hasClass('waiting') or lesson.hasClass('booked')) {
+    if(lesson.hasClass('waiting')) {
+      return true;
+    }
+
+    if(lesson.hasClass('booked')) {
+      alert('You cannot cancel this timeslot as a student has already signed up.')
       return true;
     }
 
